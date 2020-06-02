@@ -698,7 +698,7 @@ compiler_class['intelw'] = ('intelccompiler', 'IntelCCompilerW',
 compiler_class['intelemw'] = ('intelccompiler', 'IntelEM64TCCompilerW',
                               "Intel C Compiler for 64-bit applications on Windows")
 compiler_class['clang-cl'] = ('clang_cl', 'ClangCL',
-                              "Clang CL Compiler for 64-bit Windows")
+                              "Clang CL Compiler for Windows")
 compiler_class['pathcc'] = ('pathccompiler', 'PathScaleCCompiler',
                             "PathScale Compiler for SiCortex-based applications")
 ccompiler._default_compilers += (('linux.*', 'intel'),
@@ -796,4 +796,3 @@ for _cc in ['msvc9', 'msvc', '_msvc', 'bcpp', 'cygwinc', 'emxc', 'unixc']:
     _m = sys.modules.get('distutils.' + _cc + 'compiler')
     if _m is not None:
         setattr(_m, 'gen_lib_options', gen_lib_options)
-
