@@ -688,7 +688,7 @@ def configuration(parent_package='',top_path=None):
             install_dir='lib',
             build_info={
                 'include_dirs' : [],  # empty list required for creating npy_math_internal.h
-                'extra_compiler_args' : (['/GL-'] if is_msvc else []),
+                'extra_compiler_args' : (['/GL-','/MT'] if is_msvc else []),
             })
     config.add_npy_pkg_config("npymath.ini.in", "lib/npy-pkg-config",
             subst_dict)
@@ -940,8 +940,11 @@ def configuration(parent_package='',top_path=None):
                                  ],
                          depends=deps + multiarray_deps + umath_deps +
                                 common_deps,
-                         libraries=['npymath'],
-                         extra_info=extra_info)
+                         libraries=['npymath','libucrt'],
+                         extra_info=extra_info,
+                         extra_compile_args=["/MT"],
+                         #extra_link_args=["/MT","libucrt.lib"]
+                         )
 
     #######################################################################
     #                        umath_tests module                           #
